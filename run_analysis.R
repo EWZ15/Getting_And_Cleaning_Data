@@ -7,12 +7,8 @@
 ##    for each activity and each subject.
 
 library(data.table)
-setwd("D:/R/")
 
 #download data
-fileURL <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
-download.file(fileURL, destfile = "UCI HAR Dataset.zip")
-unzip("Dataset.zip")
 setwd("D:/R/UCI HAR Dataset")
 testData <- read.table("test/X_test.txt", header=FALSE)
 testData_labels <- read.table("test/y_test.txt", header=FALSE)
@@ -48,4 +44,4 @@ MergedData <- rbind(testData, trainData)
 #5 create tidy dataset with averages for each variable, activity, and subject
 table <- data.table(MergedData)
 tidy <- table[,lapply(.SD, mean), by="Activity,Subject"]
-write.table(tidy, file="tidy.csv", sep=",", row.names = FALSE)
+write.table(tidy, file="D:/R/tidy.txt", sep=",", row.names = FALSE)
